@@ -16,5 +16,72 @@ namespace Payroll.User
         {
             InitializeComponent();
         }
+
+        private void frmUserRegister_Load(object sender, EventArgs e)
+        {
+            this.ActiveControl = txtName;
+            btnUpdate.Enabled = false;
+            btnDelete.Enabled = false;
+        }
+
+        private void txtName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                if(txtName.Text.Length > 0)
+                {
+                    txtUserName.Focus();
+                }
+                else
+                {
+                    txtName.Focus();
+                }
+            }
+        }
+        private void txtUserName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                if(txtUserName.Text.Length > 0)
+                {
+                    txtPassword.Focus();
+                }
+                else
+                {
+                    txtUserName.Focus();
+                }
+            }
+        }
+
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                if(txtPassword.Text.Length > 0)
+                {
+                    txtEmail.Focus();
+                }
+                else
+                {
+                    txtPassword.Focus();
+                }
+            }
+        }
+
+        private void dtpDob_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+               cmbRole.Focus();
+            }
+        }
+
+        private void cmbRole_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                txtAddress.Focus();
+            }
+        }
     }
 }

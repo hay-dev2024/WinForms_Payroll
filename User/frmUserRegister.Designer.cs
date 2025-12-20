@@ -44,7 +44,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.cbRole = new System.Windows.Forms.ComboBox();
+            this.cmbRole = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dgSno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -126,6 +126,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(227, 21);
             this.txtName.TabIndex = 7;
+            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtName_KeyDown);
             // 
             // txtUserName
             // 
@@ -133,6 +134,7 @@
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(227, 21);
             this.txtUserName.TabIndex = 7;
+            this.txtUserName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUserName_KeyDown);
             // 
             // txtPassword
             // 
@@ -141,6 +143,7 @@
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(227, 21);
             this.txtPassword.TabIndex = 7;
+            this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
             // 
             // txtAddress
             // 
@@ -165,10 +168,11 @@
             this.dtpDob.Name = "dtpDob";
             this.dtpDob.Size = new System.Drawing.Size(226, 21);
             this.dtpDob.TabIndex = 9;
+            this.dtpDob.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtpDob_KeyDown);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(205, 218);
+            this.btnSave.Location = new System.Drawing.Point(195, 228);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(111, 41);
             this.btnSave.TabIndex = 10;
@@ -177,7 +181,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(322, 218);
+            this.btnUpdate.Location = new System.Drawing.Point(322, 228);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(111, 41);
             this.btnUpdate.TabIndex = 10;
@@ -186,20 +190,25 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(439, 218);
+            this.btnDelete.Location = new System.Drawing.Point(451, 228);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(111, 41);
             this.btnDelete.TabIndex = 10;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             // 
-            // cbRole
+            // cmbRole
             // 
-            this.cbRole.FormattingEnabled = true;
-            this.cbRole.Location = new System.Drawing.Point(452, 116);
-            this.cbRole.Name = "cbRole";
-            this.cbRole.Size = new System.Drawing.Size(226, 20);
-            this.cbRole.TabIndex = 11;
+            this.cmbRole.FormattingEnabled = true;
+            this.cmbRole.Items.AddRange(new object[] {
+            "Admin",
+            "Super Admin",
+            "User"});
+            this.cmbRole.Location = new System.Drawing.Point(452, 116);
+            this.cmbRole.Name = "cmbRole";
+            this.cmbRole.Size = new System.Drawing.Size(226, 20);
+            this.cmbRole.TabIndex = 11;
+            this.cmbRole.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbRole_KeyDown);
             // 
             // dataGridView1
             // 
@@ -212,7 +221,7 @@
             this.dgUserName,
             this.dgRole,
             this.dgAddress});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 265);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 285);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(766, 268);
@@ -257,9 +266,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(790, 545);
+            this.ClientSize = new System.Drawing.Size(790, 564);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.cbRole);
+            this.Controls.Add(this.cmbRole);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnSave);
@@ -278,6 +287,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmUserRegister";
             this.Text = "User Register";
+            this.Load += new System.EventHandler(this.frmUserRegister_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -302,7 +312,7 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.ComboBox cbRole;
+        private System.Windows.Forms.ComboBox cmbRole;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgSno;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
