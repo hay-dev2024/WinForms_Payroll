@@ -49,7 +49,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(37, 92);
+            this.label2.Location = new System.Drawing.Point(44, 84);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 12);
             this.label2.TabIndex = 1;
@@ -57,23 +57,25 @@
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(135, 48);
+            this.txtUserName.Location = new System.Drawing.Point(124, 45);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(191, 21);
             this.txtUserName.TabIndex = 2;
+            this.txtUserName.Text = "admin";
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(135, 92);
+            this.txtPassword.Location = new System.Drawing.Point(124, 81);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(191, 21);
             this.txtPassword.TabIndex = 3;
+            this.txtPassword.Text = "admin123";
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(213, 134);
+            this.linkLabel1.Location = new System.Drawing.Point(202, 120);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(113, 12);
             this.linkLabel1.TabIndex = 4;
@@ -82,7 +84,7 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(112, 171);
+            this.btnLogin.Location = new System.Drawing.Point(104, 153);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
             this.btnLogin.TabIndex = 5;
@@ -92,7 +94,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(212, 171);
+            this.btnCancel.Location = new System.Drawing.Point(204, 153);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 6;
@@ -104,7 +106,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(402, 229);
+            this.ClientSize = new System.Drawing.Size(386, 210);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.linkLabel1);

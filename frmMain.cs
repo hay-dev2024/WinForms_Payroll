@@ -31,5 +31,23 @@ namespace Payroll
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.Show();
         }
+
+        bool close = true;
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(close)
+            {
+                DialogResult result = MessageBox.Show("Are you sure you want to exit", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    close = false;
+                    Application.Exit();
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
     }
 }
