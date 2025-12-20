@@ -24,10 +24,21 @@ namespace Payroll
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            
-            this.Hide(); // 로그인 버튼을 누르면 로그인 창은 사라진다
-            frmMain frm = new frmMain();
-            frm.Show(); // main form 창이 나온다
+            // DB
+            Connection con = new Connection();
+            con.dataGet("Select * from [User] Where UserName = '" + txtUserName.Text + "' and Password = '" + txtPassword.Text + "'");
+            DataTable dt = new DataTable();
+            con.sda.Fill(dt); // fetching data
+            if(dt.Rows.Count > 0)
+            {
+                this.Hide(); // hides Login Form
+                frmMain frm = new frmMain();
+                frm.Show(); // Main Form pops up 
+            }
+            else
+            {
+                MessageBox.Show("Invalid Username & Password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
