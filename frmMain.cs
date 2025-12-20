@@ -16,5 +16,11 @@ namespace Payroll
         {
             InitializeComponent();
         }
+
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // 메인 폼이 닫힐 때, 프로그램(Application) 전체를 완전히 종료
+            Application.Exit();
+        }
     }
 }
