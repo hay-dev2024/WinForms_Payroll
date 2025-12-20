@@ -67,6 +67,20 @@ namespace Payroll.User
                 }
             }
         }
+        private void txtEmail_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                if(txtEmail.Text.Length > 0)
+                {
+                    dtpDob.Focus();
+                }
+                else
+                {
+                    txtEmail.Focus();
+                }
+            }
+        }
 
         private void dtpDob_KeyDown(object sender, KeyEventArgs e)
         {
@@ -83,5 +97,7 @@ namespace Payroll.User
                 txtAddress.Focus();
             }
         }
+
+
     }
 }
