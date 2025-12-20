@@ -16,7 +16,7 @@ namespace Payroll
 
         public void connection()
         {
-            con = new SqlConnection(@"Data Source=.;Initial Catalog=Payroll;Integrated Security=True");
+            con = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=Payroll;Integrated Security=True");
             con.Open();
         }
         public void dataSend(string SQL)
