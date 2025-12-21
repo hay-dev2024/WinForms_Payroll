@@ -49,5 +49,13 @@ namespace Payroll
                 }
             }
         }
+
+        private void changePasswordToolStripMenItem_Click(object sender, EventArgs e)
+        {
+            User.frmChangePassword frm = new User.frmChangePassword();
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.Show();
+        }
     }
 }
