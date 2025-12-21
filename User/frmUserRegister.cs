@@ -228,11 +228,25 @@ namespace Payroll.User
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to Update", "Update", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to update", "Update", MessageBoxButtons.YesNo);
             if(dialogResult == DialogResult.Yes)
             {
                 con.dataSend("UPDATE [User] SET Name ='"+txtName.Text+"', Email ='"+txtEmail.Text+"', Role ='"+cmbRole.Text+"', Dob ='"+dtpDob.Value.ToString("MM/dd/yyyy") +"', Address ='"+txtAddress.Text+"' Where UserName = '"+txtUserName.Text+"'");
                 MessageBox.Show("Updated Successfully", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadData();
+                btnSave.Enabled = true;
+                btnUpdate.Enabled = false;
+                btnDelete.Enabled = false;
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete", "Delete", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                con.dataSend("Delete from [User] where UserName = '"+txtUserName.Text+"'");
+                MessageBox.Show("Deleted Successfully", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadData();
                 btnSave.Enabled = true;
                 btnUpdate.Enabled = false;
