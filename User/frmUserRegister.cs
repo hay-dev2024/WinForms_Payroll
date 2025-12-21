@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -98,6 +99,76 @@ namespace Payroll.User
             }
         }
 
+        private void ClearDate()
+        {
+            txtName.Clear();
+            txtUserName.Clear();
+            txtPassword.Clear();
+            txtEmail.Clear();
+            txtAddress.Clear();
+            cmbRole.SelectedIndex = -1;
+            btnUpdate.Enabled = false;
+            btnDelete.Enabled = false;
+            btnSave.Enabled = true;
+            dtpDob.Value = DateTime.Now;
+        }
 
+        private bool Validation()
+        {
+            bool result = false;
+            if(string.IsNullOrEmpty(txtName.Text))
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(txtName, "Name Required");
+            }
+            else if(string.IsNullOrEmpty(txtUserName.Text))
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(txtUserName, "User Name Required");
+            }
+            else if(string.IsNullOrEmpty(txtPassword.Text))
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(txtPassword, "Password Required");
+            }
+            else if(txtPassword.Text.Length < 4)
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(txtPassword, "Password should be longer than 4 characters");
+            }
+            else if(string.IsNullOrEmpty(txtEmail.Text))
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(txtEmail, "Email Required");
+            }
+            else if(cmbRole.SelectedIndex == -1)
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(cmbRole, "Select Role");
+            }
+            else
+            {
+                errorProvider1.Clear();
+                result = true;
+            }
+            return result;
+        }
+
+        // checks DB for existing user 
+        private bool IfUserNameExists(string userName)
+        {
+            Connection con = new Connection();
+            con.dataGet("Select 1 From [User] WHERE [UserName]= '" + userName + "'");
+            DataTable dt = new DataTable();
+            con.sda.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
