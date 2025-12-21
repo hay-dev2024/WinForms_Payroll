@@ -199,16 +199,44 @@ namespace Payroll.User
             con.dataGet("Select * from [User]");
             DataTable dt = new DataTable();
             con.sda.Fill(dt);
+            dataGridView1.Rows.Clear();
             foreach (DataRow row in dt.Rows)
             {
                 int n = dataGridView1.Rows.Add();
                 dataGridView1.Rows[n].Cells["dgSno"].Value = n + 1;
                 dataGridView1.Rows[n].Cells["dgName"].Value = row["Name"].ToString();
-                dataGridView1.Rows[n].Cells["dgDob"].Value = Convert.ToDateTime(row["Dob"]).ToString("dd/MM/yyyy");
+                dataGridView1.Rows[n].Cells["dgDob"].Value = Convert.ToDateTime(row["Dob"]).ToString("MM/dd/yyyy");
                 dataGridView1.Rows[n].Cells["dgEmail"].Value = row["Email"].ToString();
                 dataGridView1.Rows[n].Cells["dgUserName"].Value = row["UserName"].ToString();
                 dataGridView1.Rows[n].Cells["dgRole"].Value = row["Role"].ToString();
                 dataGridView1.Rows[n].Cells["dgAddress"].Value = row["Address"].ToString();
+            }
+        }
+
+        private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            txtName.Text = dataGridView1.SelectedRows[0].Cells["dgName"].Value.ToString();
+            txtUserName.Text = dataGridView1.SelectedRows[0].Cells["dgUserName"].Value.ToString();
+            txtEmail.Text = dataGridView1.SelectedRows[0].Cells["dgEmail"].Value.ToString();
+            txtAddress.Text = dataGridView1.SelectedRows[0].Cells["dgAddress"].Value.ToString();
+            dtpDob.Text = dataGridView1.SelectedRows[0].Cells["dgDob"].Value.ToString();
+            cmbRole.Text = dataGridView1.SelectedRows[0].Cells["dgRole"].Value.ToString();
+            btnSave.Enabled = false;
+            btnUpdate.Enabled = true;
+            btnDelete.Enabled = true;
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to Update", "Update", MessageBoxButtons.YesNo);
+            if(dialogResult == DialogResult.Yes)
+            {
+                con.dataSend("UPDATE [User] SET Name ='"+txtName.Text+"', Email ='"+txtEmail.Text+"', Role ='"+cmbRole.Text+"', Dob ='"+dtpDob.Value.ToString("MM/dd/yyyy") +"', Address ='"+txtAddress.Text+"' Where UserName = '"+txtUserName.Text+"'");
+                MessageBox.Show("Updated Successfully", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadData();
+                btnSave.Enabled = true;
+                btnUpdate.Enabled = false;
+                btnDelete.Enabled = false;
             }
         }
     }
