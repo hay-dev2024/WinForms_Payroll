@@ -23,6 +23,7 @@ namespace Payroll.User
             this.ActiveControl = txtName;
             btnUpdate.Enabled = false;
             btnDelete.Enabled = false;
+            LoadData();
         }
 
         private void txtName_KeyDown(object sender, KeyEventArgs e)
@@ -184,10 +185,30 @@ namespace Payroll.User
                 }
                 else
                 {
-                    con.dataSend("INSERT INTO [User](Name, Email, UserName, Password, Role, Dob, Address)VALUES('"+txtName.Text+"','"+txtEmail.Text+"','"+txtUserName.Text+"','"+txtPassword+"','"+cmbRole.Text+"','"+dtpDob.Value.ToString("MM/dd/yyyy")+"','"+txtAddress.Text+"')");
+                    con.dataSend("INSERT INTO [User](Name, Email, UserName, Password, Role, Dob, Address)VALUES('"+txtName.Text+"','"+txtEmail.Text+"','"+txtUserName.Text+"','"+txtPassword.Text+"','"+cmbRole.Text+"','"+dtpDob.Value.ToString("MM/dd/yyyy")+"','"+txtAddress.Text+"')");
                     MessageBox.Show("Record saved successfully");
                     ClearDate();
+                    LoadData();
                 }
+            }
+        }
+        
+        // load user data
+        private void LoadData()
+        {
+            con.dataGet("Select * from [User]");
+            DataTable dt = new DataTable();
+            con.sda.Fill(dt);
+            foreach (DataRow row in dt.Rows)
+            {
+                int n = dataGridView1.Rows.Add();
+                dataGridView1.Rows[n].Cells["dgSno"].Value = n + 1;
+                dataGridView1.Rows[n].Cells["dgName"].Value = row["Name"].ToString();
+                dataGridView1.Rows[n].Cells["dgDob"].Value = Convert.ToDateTime(row["Dob"]).ToString("dd/MM/yyyy");
+                dataGridView1.Rows[n].Cells["dgEmail"].Value = row["Email"].ToString();
+                dataGridView1.Rows[n].Cells["dgUserName"].Value = row["UserName"].ToString();
+                dataGridView1.Rows[n].Cells["dgRole"].Value = row["Role"].ToString();
+                dataGridView1.Rows[n].Cells["dgAddress"].Value = row["Address"].ToString();
             }
         }
     }
