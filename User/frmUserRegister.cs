@@ -39,6 +39,9 @@ namespace Payroll.User
                 }
             }
         }
+        // DB connection
+        Connection con = new Connection();
+
         private void txtUserName_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)
@@ -157,7 +160,6 @@ namespace Payroll.User
         // checks DB for existing user 
         private bool IfUserNameExists(string userName)
         {
-            Connection con = new Connection();
             con.dataGet("Select 1 From [User] WHERE [UserName]= '" + userName + "'");
             DataTable dt = new DataTable();
             con.sda.Fill(dt);
@@ -168,6 +170,24 @@ namespace Payroll.User
             else
             {
                 return false;
+            }
+        }
+
+        // create a new user
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if(Validation())
+            {
+                if (IfUserNameExists(txtUserName.Text))
+                {
+                    MessageBox.Show("User Name already exists");
+                }
+                else
+                {
+                    con.dataSend("INSERT INTO [User](Name, Email, UserName, Password, Role, Dob, Address)VALUES('"+txtName.Text+"','"+txtEmail.Text+"','"+txtUserName.Text+"','"+txtPassword+"','"+cmbRole.Text+"','"+dtpDob.Value.ToString("MM/dd/yyyy")+"','"+txtAddress.Text+"')");
+                    MessageBox.Show("Record saved successfully");
+                    ClearDate();
+                }
             }
         }
     }
