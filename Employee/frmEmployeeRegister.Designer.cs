@@ -165,7 +165,6 @@
             this.txtBankDetails.Name = "txtBankDetails";
             this.txtBankDetails.Size = new System.Drawing.Size(210, 87);
             this.txtBankDetails.TabIndex = 4;
-            this.txtBankDetails.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBankDetails_KeyDown);
             // 
             // btnRemove
             // 
@@ -236,7 +235,6 @@
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(210, 87);
             this.txtAddress.TabIndex = 4;
-            this.txtAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAddress_KeyDown);
             // 
             // dtpDob
             // 

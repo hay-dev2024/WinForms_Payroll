@@ -14,9 +14,11 @@ namespace Payroll
         public SqlDataAdapter sda;
         public string pkk;
 
+        public string dbAddr = @"Data Source=.\SQLEXPRESS;Initial Catalog=Payroll;Integrated Security=True";
+
         public void connection()
         {
-            con = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=Payroll;Integrated Security=True");
+            con = new SqlConnection(dbAddr);
             con.Open();
         }
         public void dataSend(string SQL)

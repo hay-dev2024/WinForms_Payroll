@@ -111,36 +111,6 @@ namespace Payroll.Employee
             }
         }
 
-        private void txtBankDetails_KeyDown(object sender, KeyEventArgs e)
-        {
-            if(e.KeyCode == Keys.Enter)
-            {
-                if(txtBankDetails.Text.Length > 0)
-                {
-                    txtAddress.Focus();
-                }
-                else
-                {
-                    txtBankDetails.Focus();
-                }
-            }
-        }
-
-        private void txtAddress_KeyDown(object sender, KeyEventArgs e)
-        {
-            if(e.KeyCode == Keys.Enter)
-            {
-                if(txtAddress.Text.Length > 0)
-                {
-                    btnSave.Focus();
-                }
-                else
-                {
-                    txtAddress.Focus();
-                }
-            }
-        }
-
         // Mobile - numeric value and a couple characters only
         private void txtMobile_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -204,14 +174,14 @@ namespace Payroll.Employee
         }
 
         // employee image -> byte to save into DB
-        byte[] ConvertImageToBinary(Image img)
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                return ms.ToArray();
-            }
-        }
+        //byte[] ConvertImageToBinary(Image img)
+        //{
+        //    using (MemoryStream ms = new MemoryStream())
+        //    {
+        //        img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+        //        return ms.ToArray();
+        //    }
+        //}
         private void btnSave_Click(object sender, EventArgs e)
         {
             if(Validation())
@@ -222,9 +192,54 @@ namespace Payroll.Employee
                 }
                 else
                 {
-                    con.dataSend("INSERT INTO Employee (Name, Mobile, Email, TINNo, Dob, BankDetails, Address, FileName, ImageData) VALUES ('" + txtName.Text + "','" + txtMobile.Text + "','" + txtEmail.Text + "','" + txtTin.Text + "','" + dtpDob.Value.ToString("MM/dd/yyyy") + "','" + txtBankDetails.Text + "','" + txtAddress.Text + "','" + fileName + "','" + ConvertImageToBinary(pictureBox.Image) + "')");
-                    MessageBox.Show("Successfully saved", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //con.dataSend("INSERT INTO Employee (Name, Mobile, Email, TINNo, Dob, BankDetails, Address, FileName, ImageData) VALUES ('" + txtName.Text + "','" + txtMobile.Text + "','" + txtEmail.Text + "','" + txtTin.Text + "','" + dtpDob.Value.ToString("MM/dd/yyyy") + "','" + txtBankDetails.Text + "','" + txtAddress.Text + "','" + fileName + "'," + GetImageHex(pictureBox.Image) + ")");
+                    //MessageBox.Show("Successfully saved", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //ClearData();
+                    try
+                    {
+                        string connString = con.dbAddr;
 
+                        using(System.Data.SqlClient.SqlConnection sqlCon = new System.Data.SqlClient.SqlConnection(connString))
+                        {
+                            string sql = @"INSERT INTO Employee (Name, Mobile, Email, TINNo, Dob, BankDetails, Address, FileName, ImageData) 
+                                        VALUES
+                                        (@Name, @Mobile, @Email, @TINNo, @Dob, @BankDetails, @Address, @FileName, @ImageData)";
+                            using(System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand(sql, sqlCon))
+                            {
+                                cmd.Parameters.AddWithValue("@Name", txtName.Text);
+                                cmd.Parameters.AddWithValue("@Mobile", txtMobile.Text);
+                                cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+                                cmd.Parameters.AddWithValue("@TINNo", txtTin.Text);
+                                cmd.Parameters.AddWithValue("@Dob", dtpDob.Value);
+                                cmd.Parameters.AddWithValue("@BankDetails", txtBankDetails.Text);
+                                cmd.Parameters.AddWithValue("@Address", txtAddress.Text);
+                                cmd.Parameters.AddWithValue("@FileName", fileName ?? "");
+
+                                if(pictureBox.Image != null)
+                                {
+                                    using(System.IO.MemoryStream ms = new System.IO.MemoryStream())
+                                    {
+                                        pictureBox.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                                        cmd.Parameters.AddWithValue("@ImageData", ms.ToArray());
+                                    }
+                                }
+                                else
+                                {
+                                    cmd.Parameters.AddWithValue("@ImageData", DBNull.Value);
+                                }
+
+                                sqlCon.Open();
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        MessageBox.Show("Successfully saved", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ClearData();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error\n" + ex.Message);
+                    }
                 }
             }
         }
