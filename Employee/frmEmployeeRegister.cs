@@ -168,7 +168,7 @@ namespace Payroll.Employee
                 errorProvider1.Clear();
                 errorProvider1.SetError(txtTin, "TIN No. required");
             }
-            else if (string.IsNullOrEmpty(txtMobile.Text))
+            else if (string.IsNullOrEmpty(txtEmail.Text))
             {
                 errorProvider1.Clear();
                 errorProvider1.SetError(txtEmail, "Email Required");
@@ -222,7 +222,7 @@ namespace Payroll.Employee
                 }
                 else
                 {
-                    con.dataSend("INSERT INTO Employee (Name, Mobile, Email, TINNo, Dob, BankDetails, Address, ImageData) VALUES ('" + txtName.Text + "','" + txtMobile.Text + "','" + txtEmail.Text + "','" + txtTin.Text + "','" + dtpDob.Value.ToString("MM/dd/yyyy") + "','" + txtBankDetails.Text + "','" + txtAddress.Text + "','" + fileName + "','" + ConvertImageToBinary(pictureBox.Image) + "')");
+                    con.dataSend("INSERT INTO Employee (Name, Mobile, Email, TINNo, Dob, BankDetails, Address, FileName, ImageData) VALUES ('" + txtName.Text + "','" + txtMobile.Text + "','" + txtEmail.Text + "','" + txtTin.Text + "','" + dtpDob.Value.ToString("MM/dd/yyyy") + "','" + txtBankDetails.Text + "','" + txtAddress.Text + "','" + fileName + "','" + ConvertImageToBinary(pictureBox.Image) + "')");
                     MessageBox.Show("Successfully saved", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
@@ -236,7 +236,7 @@ namespace Payroll.Employee
             txtMobile.Clear();
             txtEmail.Clear();
             txtTin.Clear();
-            dtpDob.Value = DateTime.Now();
+            dtpDob.Value = DateTime.Now;
             txtBankDetails.Clear();
             txtAddress.Clear();
             pictureBox.Image = null;
