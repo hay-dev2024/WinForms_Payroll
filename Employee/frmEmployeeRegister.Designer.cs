@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.lblFileName = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -60,8 +61,10 @@
             this.dgDob = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgBankDetails = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox
@@ -127,6 +130,7 @@
             this.txtMobile.Size = new System.Drawing.Size(210, 21);
             this.txtMobile.TabIndex = 4;
             this.txtMobile.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMobile_KeyDown);
+            this.txtMobile.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMobile_KeyPress);
             // 
             // label4
             // 
@@ -252,6 +256,7 @@
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnUpdate
             // 
@@ -329,6 +334,10 @@
             this.dgAddress.HeaderText = "Address";
             this.dgAddress.Name = "dgAddress";
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // frmEmployeeRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -364,6 +373,7 @@
             this.Load += new System.EventHandler(this.frmEmployeeRegister_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -403,5 +413,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgDob;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgBankDetails;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgAddress;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

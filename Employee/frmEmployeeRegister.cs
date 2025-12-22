@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -138,6 +139,107 @@ namespace Payroll.Employee
                     txtAddress.Focus();
                 }
             }
+        }
+
+        // Mobile - numeric value and a couple characters only
+        private void txtMobile_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(!char.IsNumber(e.KeyChar) & (Keys)e.KeyChar != Keys.Back & e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private bool Validation()
+        {
+            bool result = false;
+            if(string.IsNullOrEmpty(txtName.Text))
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(txtName, "Name Required");
+            }
+            else if(string.IsNullOrEmpty(txtMobile.Text))
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(txtMobile, "Mobile number required");
+            }
+            else if(string.IsNullOrEmpty(txtTin.Text))
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(txtTin, "TIN No. required");
+            }
+            else if (string.IsNullOrEmpty(txtMobile.Text))
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(txtEmail, "Email Required");
+            }
+            else if(string.IsNullOrEmpty(txtAddress.Text))
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(txtAddress, "Address Required");
+            }
+            else
+            {
+                errorProvider1.Clear();
+                result = true;
+            }
+            return result;
+        }
+
+        // DB
+        Connection con = new Connection();
+        private bool IfEmployeeExists(string name, string mobile, string tinNo)
+        {
+            con.dataGet("Select 1 From Employee Where Name = '" + name + "' And Mobile = '" + mobile + "' And TINNo = '" + tinNo + "'");
+            DataTable dt = new DataTable();
+            con.sda.Fill(dt);
+            if(dt.Rows.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        // employee image -> byte to save into DB
+        byte[] ConvertImageToBinary(Image img)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                return ms.ToArray();
+            }
+        }
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if(Validation())
+            {
+                if(IfEmployeeExists(txtName.Text, txtMobile.Text, txtTin.Text))
+                {
+                    MessageBox.Show("Employee already exists");
+                }
+                else
+                {
+                    con.dataSend("INSERT INTO Employee (Name, Mobile, Email, TINNo, Dob, BankDetails, Address, ImageData) VALUES ('" + txtName.Text + "','" + txtMobile.Text + "','" + txtEmail.Text + "','" + txtTin.Text + "','" + dtpDob.Value.ToString("MM/dd/yyyy") + "','" + txtBankDetails.Text + "','" + txtAddress.Text + "','" + fileName + "','" + ConvertImageToBinary(pictureBox.Image) + "')");
+                    MessageBox.Show("Successfully saved", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+            }
+        }
+
+        private void ClearData()
+        {
+            txtName.Clear();
+            txtEmpId.Clear();
+            txtMobile.Clear();
+            txtEmail.Clear();
+            txtTin.Clear();
+            dtpDob.Value = DateTime.Now();
+            txtBankDetails.Clear();
+            txtAddress.Clear();
+            pictureBox.Image = null;
         }
     }
 }
