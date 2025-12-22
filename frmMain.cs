@@ -50,9 +50,17 @@ namespace Payroll
             }
         }
 
-        private void changePasswordToolStripMenItem_Click(object sender, EventArgs e)
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
             User.frmChangePassword frm = new User.frmChangePassword();
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.Show();
+        }
+
+        private void employeeRegisterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Employee.frmEmployeeRegister frm = new Employee.frmEmployeeRegister();
             frm.MdiParent = this;
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.Show();
