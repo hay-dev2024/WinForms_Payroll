@@ -41,6 +41,7 @@ namespace Payroll.Employee
         private void frmEmployeeRegister_Load(object sender, EventArgs e)
         {
             this.ActiveControl = txtName;
+            LoadDate();
         }
 
         private void txtName_KeyDown(object sender, KeyEventArgs e)
@@ -235,6 +236,7 @@ namespace Payroll.Employee
 
                         MessageBox.Show("Successfully saved", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         ClearData();
+                        LoadDate();
                     }
                     catch (Exception ex)
                     {
@@ -255,6 +257,84 @@ namespace Payroll.Employee
             txtBankDetails.Clear();
             txtAddress.Clear();
             pictureBox.Image = null;
+        }
+
+        private void LoadDate()
+        {
+            con.dataGet("Select * from Employee");
+            DataTable dt = new DataTable();
+            con.sda.Fill(dt);
+            dataGridView1.Rows.Clear();
+            foreach (DataRow row in dt.Rows)
+            {
+                int n = dataGridView1.Rows.Add();
+                dataGridView1.Rows[n].Cells["dgEmpId"].Value = row["EmpId"].ToString();
+                dataGridView1.Rows[n].Cells["dgName"].Value = row["Name"].ToString();
+
+                if (row["Dob"] != DBNull.Value && row["Dob"].ToString() != "")
+                {
+                    try
+                    {
+                        dataGridView1.Rows[n].Cells["dgDob"].Value = Convert.ToDateTime(row["Dob"].ToString()).ToString("dd/MM/yyyy");
+                    }
+                    catch (Exception)
+                    {
+                        dataGridView1.Rows[n].Cells["dgDob"].Value = "";
+                    }
+                }
+                else
+                {
+                    dataGridView1.Rows[n].Cells["dgDob"].Value = "";
+                }
+
+                dataGridView1.Rows[n].Cells["dgEmail"].Value = row["Email"].ToString();
+                dataGridView1.Rows[n].Cells["dgMobile"].Value = row["Mobile"].ToString();
+                dataGridView1.Rows[n].Cells["dgTinNo"].Value = row["TINNo"].ToString();
+                dataGridView1.Rows[n].Cells["dgBankDetails"].Value = row["BankDetails"].ToString();
+                dataGridView1.Rows[n].Cells["dgAddress"].Value = row["Address"].ToString();
+                dataGridView1.Rows[n].Cells["dgFileName"].Value = row["FileName"].ToString();
+                dataGridView1.Rows[n].Cells["dgImageData"].Value = row["ImageData"].ToString();
+
+            }
+        }
+
+        private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            txtEmpId.Text = dataGridView1.SelectedRows[0].Cells["dgEmpId"].Value.ToString();
+            txtName.Text = dataGridView1.SelectedRows[0].Cells["dgName"].Value.ToString();
+            txtMobile.Text = dataGridView1.SelectedRows[0].Cells["dgMobile"].Value.ToString();
+            txtEmail.Text = dataGridView1.SelectedRows[0].Cells["dgEmail"].Value.ToString();
+            txtTin.Text = dataGridView1.SelectedRows[0].Cells["dgTinNo"].Value.ToString();
+
+            string dobValue = dataGridView1.SelectedRows[0].Cells["dgDob"].Value.ToString();
+            DateTime dt;
+            if(DateTime.TryParse(dobValue, out dt))
+            {
+                dtpDob.Value = dt;
+            }
+            else
+            {
+                dtpDob.Value = DateTime.Now;
+            }
+            
+            txtBankDetails.Text = dataGridView1.SelectedRows[0].Cells["dgBankDetails"].Value.ToString();
+            txtAddress.Text = dataGridView1.SelectedRows[0].Cells["dgAddress"].Value.ToString();
+            
+            string path = dataGridView1.SelectedRows[0].Cells["dgFileName"].Value.ToString();
+            
+            lblFileName.Text = path;
+
+            if(System.IO.File.Exists(path))
+            {
+                pictureBox.Image = Image.FromFile(path);
+            }
+            else
+            {
+                pictureBox.Image = null;
+            }
+
+
+            //pictureBox.Image = Image.FromFile(dataGridView1.SelectedRows[0].Cells["dgImageData"].Value.ToString());
         }
     }
 }

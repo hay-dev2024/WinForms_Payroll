@@ -205,7 +205,7 @@ namespace Payroll.User
                 int n = dataGridView1.Rows.Add();
                 dataGridView1.Rows[n].Cells["dgSno"].Value = n + 1;
                 dataGridView1.Rows[n].Cells["dgName"].Value = row["Name"].ToString();
-                dataGridView1.Rows[n].Cells["dgDob"].Value = Convert.ToDateTime(row["Dob"]).ToString("MM/dd/yyyy");
+                dataGridView1.Rows[n].Cells["dgDob"].Value = Convert.ToDateTime(row["Dob"]).ToString("dd/MM/yyyy");
                 dataGridView1.Rows[n].Cells["dgEmail"].Value = row["Email"].ToString();
                 dataGridView1.Rows[n].Cells["dgUserName"].Value = row["UserName"].ToString();
                 dataGridView1.Rows[n].Cells["dgRole"].Value = row["Role"].ToString();

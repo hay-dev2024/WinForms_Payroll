@@ -65,5 +65,13 @@ namespace Payroll
             frm.StartPosition = FormStartPosition.CenterScreen;
             frm.Show();
         }
+
+        private void employeeSalaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Employee.frmEmpSalary frm = new Employee.frmEmpSalary();
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.Show();
+        }
     }
 }

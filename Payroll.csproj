@@ -53,6 +53,12 @@
     <Compile Include="Employee\frmEmployeeRegister.Designer.cs">
       <DependentUpon>frmEmployeeRegister.cs</DependentUpon>
     </Compile>
+    <Compile Include="Employee\frmEmpSalary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Employee\frmEmpSalary.Designer.cs">
+      <DependentUpon>frmEmpSalary.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,9 @@
     </Compile>
     <EmbeddedResource Include="Employee\frmEmployeeRegister.resx">
       <DependentUpon>frmEmployeeRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Employee\frmEmpSalary.resx">
+      <DependentUpon>frmEmpSalary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

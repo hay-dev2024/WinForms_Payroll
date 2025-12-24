@@ -53,6 +53,7 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.dgEmpId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgMobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,7 +62,8 @@
             this.dgDob = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgBankDetails = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dgFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgImageData = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -285,12 +287,20 @@
             this.dgTinNo,
             this.dgDob,
             this.dgBankDetails,
-            this.dgAddress});
+            this.dgAddress,
+            this.dgFileName,
+            this.dgImageData});
             this.dataGridView1.Location = new System.Drawing.Point(12, 275);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(866, 274);
             this.dataGridView1.TabIndex = 6;
+            this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // dgEmpId
             // 
@@ -332,9 +342,17 @@
             this.dgAddress.HeaderText = "Address";
             this.dgAddress.Name = "dgAddress";
             // 
-            // errorProvider1
+            // dgFileName
             // 
-            this.errorProvider1.ContainerControl = this;
+            this.dgFileName.HeaderText = "File Name";
+            this.dgFileName.Name = "dgFileName";
+            this.dgFileName.Visible = false;
+            // 
+            // dgImageData
+            // 
+            this.dgImageData.HeaderText = "Image Data";
+            this.dgImageData.Name = "dgImageData";
+            this.dgImageData.Visible = false;
             // 
             // frmEmployeeRegister
             // 
@@ -403,6 +421,7 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpId;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgMobile;
@@ -411,6 +430,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgDob;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgBankDetails;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgAddress;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgFileName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgImageData;
     }
 }

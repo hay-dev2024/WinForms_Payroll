@@ -34,6 +34,7 @@
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.employeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.employeeRegisterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.employeeSalaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,21 +61,22 @@
             // userRegisterToolStripMenuItem
             // 
             this.userRegisterToolStripMenuItem.Name = "userRegisterToolStripMenuItem";
-            this.userRegisterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.userRegisterToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.userRegisterToolStripMenuItem.Text = "User Register";
             this.userRegisterToolStripMenuItem.Click += new System.EventHandler(this.userRegisterToolStripMenuItem_Click);
             // 
             // changePasswordToolStripMenuItem
             // 
             this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.changePasswordToolStripMenuItem.Text = "Change Password";
             this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.changePasswordToolStripMenuItem_Click);
             // 
             // employeeToolStripMenuItem
             // 
             this.employeeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.employeeRegisterToolStripMenuItem});
+            this.employeeRegisterToolStripMenuItem,
+            this.employeeSalaryToolStripMenuItem});
             this.employeeToolStripMenuItem.Name = "employeeToolStripMenuItem";
             this.employeeToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.employeeToolStripMenuItem.Text = "Employee";
@@ -85,6 +87,13 @@
             this.employeeRegisterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.employeeRegisterToolStripMenuItem.Text = "Employee Register";
             this.employeeRegisterToolStripMenuItem.Click += new System.EventHandler(this.employeeRegisterToolStripMenuItem_Click);
+            // 
+            // employeeSalaryToolStripMenuItem
+            // 
+            this.employeeSalaryToolStripMenuItem.Name = "employeeSalaryToolStripMenuItem";
+            this.employeeSalaryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.employeeSalaryToolStripMenuItem.Text = "Employee Salary";
+            this.employeeSalaryToolStripMenuItem.Click += new System.EventHandler(this.employeeSalaryToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -115,5 +124,6 @@
         private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem employeeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem employeeRegisterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem employeeSalaryToolStripMenuItem;
     }
 }
