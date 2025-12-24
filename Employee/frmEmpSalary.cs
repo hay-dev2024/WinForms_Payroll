@@ -23,17 +23,23 @@ namespace Payroll.Employee
         {
             if(e.KeyCode == Keys.Enter)
             {
+                if(dgvEmpInfo.Rows.Count > 0)
+                {
+                    txtEmpId.Text = dgvEmpInfo.Rows[0].Cells[0].Value.ToString();
+                    txtEmpName.Text = dgvEmpInfo.Rows[0].Cells[1].Value.ToString();
+                    dtpJoinDate.Focus();
+
+                }
 
             }
         }
 
         private void txtEmpId_TextChanged(object sender, EventArgs e)
         {
-            con.dataGet("Select Top(10) EmpId, Name From Employee Where EmpId Like '"+txtEmpId.Text+"'%");
+            con.dataGet("Select Top(10) EmpId, Name From Employee Where EmpId Like '"+txtEmpId.Text+"%'");
             DataTable dt = new DataTable();
             con.sda.Fill(dt);
-            dataGridView2.DataSource = dt;
-
+            dgvEmpInfo.DataSource = dt;
         }
 
         private void txtEmpId_KeyPress(object sender, KeyPressEventArgs e)
@@ -42,6 +48,34 @@ namespace Payroll.Employee
             {
                 e.Handled = true;
             }
+        }
+
+        private void txtEmpName_TextChanged(object sender, EventArgs e)
+        {
+            con.dataGet("Select Top(10) EmpId, Name From Employee Where Name Like '" + txtEmpName.Text + "%'");
+            DataTable dt = new DataTable();
+            con.sda.Fill(dt);
+            dgvEmpInfo.DataSource = dt;
+        }
+
+        private void txtEmpName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (dgvEmpInfo.Rows.Count > 0)
+                {
+                    txtEmpId.Text = dgvEmpInfo.Rows[0].Cells[0].Value.ToString();
+                    txtEmpName.Text = dgvEmpInfo.Rows[0].Cells[1].Value.ToString();
+                    dtpJoinDate.Focus();
+
+                }
+
+            }
+        }
+
+        private void frmEmpSalary_Load(object sender, EventArgs e)
+        {
+            this.ActiveControl = txtEmpId;
         }
     }
 }

@@ -43,10 +43,10 @@
             this.dgEmpName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgJoinDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgSalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dgvEmpInfo = new System.Windows.Forms.DataGridView();
             this.dtpJoinDate = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmpInfo)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -92,6 +92,8 @@
             this.txtEmpName.Name = "txtEmpName";
             this.txtEmpName.Size = new System.Drawing.Size(198, 21);
             this.txtEmpName.TabIndex = 1;
+            this.txtEmpName.TextChanged += new System.EventHandler(this.txtEmpName_TextChanged);
+            this.txtEmpName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmpName_KeyDown);
             // 
             // label4
             // 
@@ -170,15 +172,15 @@
             this.dgSalary.HeaderText = "Salary P/A";
             this.dgSalary.Name = "dgSalary";
             // 
-            // dataGridView2
+            // dgvEmpInfo
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(610, 12);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(279, 170);
-            this.dataGridView2.TabIndex = 4;
+            this.dgvEmpInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEmpInfo.Location = new System.Drawing.Point(610, 12);
+            this.dgvEmpInfo.Name = "dgvEmpInfo";
+            this.dgvEmpInfo.RowTemplate.Height = 23;
+            this.dgvEmpInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvEmpInfo.Size = new System.Drawing.Size(279, 170);
+            this.dgvEmpInfo.TabIndex = 4;
             // 
             // dtpJoinDate
             // 
@@ -195,7 +197,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(901, 515);
             this.Controls.Add(this.dtpJoinDate);
-            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.dgvEmpInfo);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
@@ -209,8 +211,9 @@
             this.Controls.Add(this.label1);
             this.Name = "frmEmpSalary";
             this.Text = "Assigning Employee Salary";
+            this.Load += new System.EventHandler(this.frmEmpSalary_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmpInfo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -229,7 +232,7 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dgvEmpInfo;
         private System.Windows.Forms.DateTimePicker dtpJoinDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpId;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpName;
