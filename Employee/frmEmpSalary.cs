@@ -123,5 +123,20 @@ namespace Payroll.Employee
             }
             return result;
         }
+
+        private bool IfEmployeeExists(string empId)
+        {
+            con.dataGet("Select 1 From EmpSalary Where EmpId = '" + empId + "'");
+            DataTable dt = new DataTable();
+            con.sda.Fill(dt);
+            if(dt.Rows.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
