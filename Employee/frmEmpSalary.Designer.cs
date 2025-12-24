@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.txtEmpId = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,8 +46,10 @@
             this.dgSalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvEmpInfo = new System.Windows.Forms.DataGridView();
             this.dtpJoinDate = new System.Windows.Forms.DateTimePicker();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpInfo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -110,6 +113,7 @@
             this.txtSalary.Name = "txtSalary";
             this.txtSalary.Size = new System.Drawing.Size(198, 21);
             this.txtSalary.TabIndex = 1;
+            this.txtSalary.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSalary_KeyDown);
             // 
             // btnSave
             // 
@@ -119,6 +123,7 @@
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnUpdate
             // 
@@ -190,6 +195,11 @@
             this.dtpJoinDate.Name = "dtpJoinDate";
             this.dtpJoinDate.Size = new System.Drawing.Size(200, 21);
             this.dtpJoinDate.TabIndex = 5;
+            this.dtpJoinDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtpJoinDate_KeyDown);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // frmEmpSalary
             // 
@@ -214,6 +224,7 @@
             this.Load += new System.EventHandler(this.frmEmpSalary_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpInfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -238,5 +249,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgEmpName;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgJoinDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgSalary;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

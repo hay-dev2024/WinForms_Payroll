@@ -77,5 +77,51 @@ namespace Payroll.Employee
         {
             this.ActiveControl = txtEmpId;
         }
+
+        private void dtpJoinDate_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                txtSalary.Focus();
+            }
+        }
+
+        private void txtSalary_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if(txtSalary.Text.Length > 0)
+                {
+                    btnSave.Focus();
+                }
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            con.dataSend("INSERT INTO EmpSalary (EmpId, JoinDate, Salary) VALUES ('"+txtEmpId.Text+"','"+dtpJoinDate.Value.ToString("MM/dd/yyyy")+"','"+txtSalary.Text+"')");
+
+        }
+
+        private bool Validation()
+        {
+            bool result = false;
+            if(string.IsNullOrEmpty(txtEmpId.Text))
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(txtEmpId, "Empn ID Required");
+            }
+            else if(string.IsNullOrEmpty(txtSalary.Text))
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(txtSalary, "Salary Required");
+            }
+            else
+            {
+                errorProvider1.Clear();
+                result = true;
+            }
+            return result;
+        }
     }
 }
