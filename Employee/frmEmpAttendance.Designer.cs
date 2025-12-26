@@ -67,6 +67,8 @@
             this.txtEmpId.Name = "txtEmpId";
             this.txtEmpId.Size = new System.Drawing.Size(193, 21);
             this.txtEmpId.TabIndex = 1;
+            this.txtEmpId.TextChanged += new System.EventHandler(this.txtEmpId_TextChanged);
+            this.txtEmpId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmpId_KeyPress);
             // 
             // txtEmpName
             // 
@@ -117,6 +119,7 @@
             this.txtTotalDays.Name = "txtTotalDays";
             this.txtTotalDays.Size = new System.Drawing.Size(193, 21);
             this.txtTotalDays.TabIndex = 1;
+            this.txtTotalDays.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotalDays_KeyPress);
             // 
             // label6
             // 
@@ -133,6 +136,7 @@
             this.txtWorkingDays.Name = "txtWorkingDays";
             this.txtWorkingDays.Size = new System.Drawing.Size(193, 21);
             this.txtWorkingDays.TabIndex = 1;
+            this.txtWorkingDays.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtWorkingDays_KeyPress);
             // 
             // label7
             // 
@@ -149,6 +153,7 @@
             this.txtPresentDays.Name = "txtPresentDays";
             this.txtPresentDays.Size = new System.Drawing.Size(102, 21);
             this.txtPresentDays.TabIndex = 1;
+            this.txtPresentDays.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPresentDays_KeyPress);
             // 
             // label8
             // 
@@ -165,6 +170,7 @@
             this.txtAbsentDays.Name = "txtAbsentDays";
             this.txtAbsentDays.Size = new System.Drawing.Size(102, 21);
             this.txtAbsentDays.TabIndex = 1;
+            this.txtAbsentDays.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAbsentDays_KeyPress);
             // 
             // label9
             // 
@@ -181,6 +187,7 @@
             this.txtLopDays.Name = "txtLopDays";
             this.txtLopDays.Size = new System.Drawing.Size(102, 21);
             this.txtLopDays.TabIndex = 1;
+            this.txtLopDays.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLopDays_KeyPress);
             // 
             // btnSave
             // 
@@ -265,6 +272,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmEmpAttendance";
             this.Text = "Employee Attendance";
+            this.Load += new System.EventHandler(this.frmEmpAttendance_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

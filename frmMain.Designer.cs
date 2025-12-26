@@ -35,6 +35,7 @@
             this.employeeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.employeeRegisterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.employeeSalaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.employeeAttendanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,7 +77,8 @@
             // 
             this.employeeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.employeeRegisterToolStripMenuItem,
-            this.employeeSalaryToolStripMenuItem});
+            this.employeeSalaryToolStripMenuItem,
+            this.employeeAttendanceToolStripMenuItem});
             this.employeeToolStripMenuItem.Name = "employeeToolStripMenuItem";
             this.employeeToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.employeeToolStripMenuItem.Text = "Employee";
@@ -94,6 +96,13 @@
             this.employeeSalaryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.employeeSalaryToolStripMenuItem.Text = "Employee Salary";
             this.employeeSalaryToolStripMenuItem.Click += new System.EventHandler(this.employeeSalaryToolStripMenuItem_Click);
+            // 
+            // employeeAttendanceToolStripMenuItem
+            // 
+            this.employeeAttendanceToolStripMenuItem.Name = "employeeAttendanceToolStripMenuItem";
+            this.employeeAttendanceToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.employeeAttendanceToolStripMenuItem.Text = "Employee Attendance";
+            this.employeeAttendanceToolStripMenuItem.Click += new System.EventHandler(this.employeeAttendanceToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -125,5 +134,6 @@
         private System.Windows.Forms.ToolStripMenuItem employeeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem employeeRegisterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem employeeSalaryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem employeeAttendanceToolStripMenuItem;
     }
 }
