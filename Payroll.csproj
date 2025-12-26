@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connection.cs" />
+    <Compile Include="Employee\frmEmpAttendance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Employee\frmEmpAttendance.Designer.cs">
+      <DependentUpon>frmEmpAttendance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Employee\frmEmployeeRegister.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,9 @@
     <Compile Include="User\frmUserRegister.Designer.cs">
       <DependentUpon>frmUserRegister.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Employee\frmEmpAttendance.resx">
+      <DependentUpon>frmEmpAttendance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Employee\frmEmployeeRegister.resx">
       <DependentUpon>frmEmployeeRegister.cs</DependentUpon>
     </EmbeddedResource>
