@@ -192,7 +192,14 @@ namespace Payroll.Employee
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to update", "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(dialogResult == DialogResult.Yes)
+            {
+                con.dataSend("Update EmpSalary Set JoinDate = '" + dtpJoinDate.Value.ToString("MM/dd/yyyy") + "', Salary = '"+txtSalary.Text+"' Where EmpId = '"+txtEmpId.Text+"'");
+                MessageBox.Show("Updated successfully", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadData();
+                ClearData();
+            }
         }
     }
 }
