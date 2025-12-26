@@ -77,6 +77,8 @@ namespace Payroll.Employee
         {
             this.ActiveControl = txtEmpId;
             LoadData();
+            btnUpdate.Enabled = false;
+            btnUpdate.Enabled = false;
         }
 
         private void dtpJoinDate_KeyDown(object sender, KeyEventArgs e)
@@ -183,7 +185,18 @@ namespace Payroll.Employee
         {
             txtEmpId.Text = dataGridView1.SelectedRows[0].Cells["dgEmpId"].Value.ToString();
             txtEmpName.Text = dataGridView1.SelectedRows[0].Cells["dgEmpName"].Value.ToString();
-            dtpJoinDate.Text = dataGridView1.SelectedRows[0].Cells["dgJoinDate"].Value.ToString();
+            
+            string dateValue = dataGridView1.SelectedRows[0].Cells["dgJoinDate"].Value.ToString();
+            DateTime dt;
+            if(DateTime.TryParse(dateValue, out dt))
+            {
+                dtpJoinDate.Value = dt;
+            }
+            else
+            {
+                dtpJoinDate.Value = DateTime.Now;
+            }
+
             txtSalary.Text = dataGridView1.SelectedRows[0].Cells["dgSalary"].Value.ToString();
             btnSave.Enabled = false;
             btnUpdate.Enabled = true;
@@ -197,6 +210,18 @@ namespace Payroll.Employee
             {
                 con.dataSend("Update EmpSalary Set JoinDate = '" + dtpJoinDate.Value.ToString("MM/dd/yyyy") + "', Salary = '"+txtSalary.Text+"' Where EmpId = '"+txtEmpId.Text+"'");
                 MessageBox.Show("Updated successfully", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadData();
+                ClearData();
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                con.dataSend("Delete From EmpSalary Where EmpId = '" + txtEmpId.Text + "'");
+                MessageBox.Show("Deleted successfully", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadData();
                 ClearData();
             }
