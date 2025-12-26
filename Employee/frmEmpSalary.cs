@@ -76,6 +76,7 @@ namespace Payroll.Employee
         private void frmEmpSalary_Load(object sender, EventArgs e)
         {
             this.ActiveControl = txtEmpId;
+            LoadData();
         }
 
         private void dtpJoinDate_KeyDown(object sender, KeyEventArgs e)
@@ -176,6 +177,22 @@ namespace Payroll.Employee
             {
                 return false;
             }
+        }
+
+        private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            txtEmpId.Text = dataGridView1.SelectedRows[0].Cells["dgEmpId"].Value.ToString();
+            txtEmpName.Text = dataGridView1.SelectedRows[0].Cells["dgEmpName"].Value.ToString();
+            dtpJoinDate.Text = dataGridView1.SelectedRows[0].Cells["dgJoinDate"].Value.ToString();
+            txtSalary.Text = dataGridView1.SelectedRows[0].Cells["dgSalary"].Value.ToString();
+            btnSave.Enabled = false;
+            btnUpdate.Enabled = true;
+            btnDelete.Enabled = true;
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
