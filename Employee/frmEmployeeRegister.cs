@@ -174,15 +174,6 @@ namespace Payroll.Employee
             }
         }
 
-        // employee image -> byte to save into DB
-        //byte[] ConvertImageToBinary(Image img)
-        //{
-        //    using (MemoryStream ms = new MemoryStream())
-        //    {
-        //        img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-        //        return ms.ToArray();
-        //    }
-        //}
         private void btnSave_Click(object sender, EventArgs e)
         {
             if(Validation())
@@ -193,9 +184,6 @@ namespace Payroll.Employee
                 }
                 else
                 {
-                    //con.dataSend("INSERT INTO Employee (Name, Mobile, Email, TINNo, Dob, BankDetails, Address, FileName, ImageData) VALUES ('" + txtName.Text + "','" + txtMobile.Text + "','" + txtEmail.Text + "','" + txtTin.Text + "','" + dtpDob.Value.ToString("MM/dd/yyyy") + "','" + txtBankDetails.Text + "','" + txtAddress.Text + "','" + fileName + "'," + GetImageHex(pictureBox.Image) + ")");
-                    //MessageBox.Show("Successfully saved", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //ClearData();
                     try
                     {
                         string connString = con.dbAddr;
@@ -332,9 +320,6 @@ namespace Payroll.Employee
             {
                 pictureBox.Image = null;
             }
-
-
-            //pictureBox.Image = Image.FromFile(dataGridView1.SelectedRows[0].Cells["dgImageData"].Value.ToString());
         }
     }
 }
