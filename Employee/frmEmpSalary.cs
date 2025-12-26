@@ -99,8 +99,47 @@ namespace Payroll.Employee
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            con.dataSend("INSERT INTO EmpSalary (EmpId, JoinDate, Salary) VALUES ('"+txtEmpId.Text+"','"+dtpJoinDate.Value.ToString("MM/dd/yyyy")+"','"+txtSalary.Text+"')");
+            if(Validation())
+            {
+                if(IfEmployeeExists(txtEmpId.Text))
+                {
+                    MessageBox.Show("Record already exists");
+                }
+                else
+                {
+                    con.dataSend("INSERT INTO EmpSalary (EmpId, JoinDate, Salary) VALUES ('" + txtEmpId.Text + "','" + dtpJoinDate.Value.ToString("MM/dd/yyyy") + "','" + txtSalary.Text + "')");
+                    MessageBox.Show("Successfully saved", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ClearData();
+                    LoadData();
+                }
+            }
+        }
 
+        private void ClearData()
+        {
+            txtEmpId.Clear();
+            txtEmpName.Clear();
+            txtSalary.Clear();
+            dtpJoinDate.Value = DateTime.Now;
+            btnSave.Enabled = true;
+            btnUpdate.Enabled = false;
+            btnDelete.Enabled = false;
+        }
+
+        private void LoadData()
+        {
+            con.dataGet("Select EmpSalary.*, Employee.Name From Employee Inner Join EmpSalary On Employee.EmpId = EmpSalary.EmpId");
+            DataTable dt = new DataTable();
+            con.sda.Fill(dt);
+            dataGridView1.Rows.Clear();
+            foreach (DataRow row in dt.Rows)
+            {
+                int n = dataGridView1.Rows.Add();
+                dataGridView1.Rows[n].Cells["dgEmpId"].Value = row["EmpId"].ToString();
+                dataGridView1.Rows[n].Cells["dgEmpName"].Value = row["Name"].ToString();
+                dataGridView1.Rows[n].Cells["dgJoinDate"].Value = Convert.ToDateTime(row["JoinDate"].ToString()).ToString("dd/MM/yyyy");
+                dataGridView1.Rows[n].Cells["dgSalary"].Value = row["Salary"].ToString();
+            }
         }
 
         private bool Validation()
