@@ -300,6 +300,55 @@ namespace Payroll.Employee
             }
         }
 
-
+        private bool Validation()
+        {
+            bool result = false;
+            if(string.IsNullOrEmpty(txtEmpId.Text))
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(txtEmpId, "Emp ID required");
+            }
+            else if(string.IsNullOrEmpty(cmbYear.Text))
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(cmbYear, "Select year");
+            }
+            else if (string.IsNullOrEmpty(cmbMonth.Text))
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(cmbMonth, "Select month");
+            }
+            else if (string.IsNullOrEmpty(txtTotalDays.Text))
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(txtTotalDays, "Total days required");
+            }
+            else if (string.IsNullOrEmpty(txtWorkingDays.Text))
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(txtWorkingDays, "Working days required");
+            }
+            else if (string.IsNullOrEmpty(txtPresentDays.Text))
+            {
+                errorProvider1.Clear();
+                errorProvider1.SetError(txtPresentDays, "Present days required");
+            }
+            //else if (string.IsNullOrEmpty(txtAbsentDays.Text))
+            //{
+            //    errorProvider1.Clear();
+            //    errorProvider1.SetError(txtAbsentDays, "Absent days required");
+            //}
+            //else if (string.IsNullOrEmpty(txtLopDays.Text))
+            //{
+            //    errorProvider1.Clear();
+            //    errorProvider1.SetError(txtLopDays, "LOP days required");
+            //}
+            else
+            {
+                errorProvider1.Clear();
+                result = true;
+            }
+            return result;
+        }
     }
 }
