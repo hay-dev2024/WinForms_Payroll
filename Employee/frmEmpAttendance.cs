@@ -297,6 +297,17 @@ namespace Payroll.Employee
                     btnUpdate.Enabled = true;
                     btnDelete.Enabled = true;
                 }
+                else
+                {
+                    txtTotalDays.Text = "";
+                    txtWorkingDays.Text = "";
+                    txtPresentDays.Text = "";
+                    txtAbsentDays.Text = "";
+                    txtLopDays.Text = "";
+                    btnSave.Enabled = true;
+                    btnUpdate.Enabled = false;
+                    btnDelete.Enabled = false;
+                }
             }
         }
 
@@ -349,6 +360,44 @@ namespace Payroll.Employee
                 result = true;
             }
             return result;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if(Validation())
+            {
+                con.dataSend(@"INSERT INTO EmpAttendance (EmpId, Year, Month, TotalDays, WorkingDays, PresentDays, AbsentDays, LopDays)
+                                VALUES  ('"+txtEmpId.Text+"','"+cmbYear.Text+"','"+cmbMonth.Text+"','"+txtTotalDays.Text+"','"+txtWorkingDays.Text+"','"+txtPresentDays.Text+"','"+txtAbsentDays.Text+"','"+txtLopDays.Text+"')");
+                MessageBox.Show("Saved successfully", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearData();
+            }
+        }
+
+        private void ClearData()
+        {
+            txtEmpId.Clear();
+            txtEmpName.Clear();
+            cmbYear.SelectedIndex = -1;
+            cmbMonth.SelectedIndex = -1;
+            txtTotalDays.Clear();
+            txtWorkingDays.Clear();
+            txtPresentDays.Clear();
+            txtAbsentDays.Clear();
+            txtLopDays.Clear();
+            btnSave.Enabled = true;
+            btnUpdate.Enabled = false;
+            btnDelete.Enabled = false;
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to update", "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(dialogResult == DialogResult.Yes)
+            {
+                con.dataSend("UPDATE EmpAttendance SET PresentDays = '"+txtPresentDays.Text+"', AbsentDays ='"+txtAbsentDays.Text+"', TotalDays ='"+txtTotalDays.Text+"', WorkingDays ='"+txtWorkingDays.Text+"', LopDays ='"+txtLopDays.Text+"' Where EmpId ='"+txtEmpId.Text+"' And Year ='"+cmbYear.Text+ "' And Month ='" + cmbMonth.Text+"'");
+                MessageBox.Show("Updated successfully", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearData();
+            }
         }
     }
 }
