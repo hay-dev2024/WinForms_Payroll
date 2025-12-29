@@ -88,6 +88,7 @@ namespace Payroll.Employee
             this.dgview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             //this.dgview.KeyDown += new System.Windows.Forms.KeyPressEventHandler(this.dgview_KeyDown);
 
+            // 이벤트 연결
             this.dgview.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.employee_MouseDoubleClick);
 
             this.Controls.Add(dgview);
@@ -126,6 +127,10 @@ namespace Payroll.Employee
         private void frmEmpAttendance_Load(object sender, EventArgs e)
         {
             Search();
+            this.ActiveControl = txtEmpId;
+            btnDelete.Enabled = false;
+            btnUpdate.Enabled = false;
+
         }
 
         private void txtEmpId_TextChanged(object sender, EventArgs e)
@@ -168,6 +173,108 @@ namespace Payroll.Employee
                 this.dgview.Visible = false;
                 cmbYear.Focus();
                 change = true;
+            }
+        }
+
+        private void txtEmpId_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                if(dgview.Rows.Count > 0)
+                {
+                    txtEmpId.Text = dgview.SelectedRows[0].Cells[0].Value.ToString();
+                    txtEmpName.Text = dgview.SelectedRows[0].Cells[1].Value.ToString();
+                    this.dgview.Visible = false;
+                    cmbYear.Focus();
+                }
+                else
+                {
+                    this.dgview.Visible = false;
+                }
+            }
+        }
+
+        private void cmbYear_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                if(cmbYear.SelectedIndex != -1)
+                {
+                    cmbMonth.Focus();
+                }
+                else
+                {
+                    cmbYear.Focus();
+                }
+            }
+        }
+
+        private void cmbMonth_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                if(cmbMonth.SelectedIndex != -1)
+                {
+                    txtTotalDays.Focus();
+                }
+                else
+                {
+                    cmbMonth.Focus();
+                }
+            }
+        }
+
+        private void txtTotalDays_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (txtTotalDays.Text.Length > 0)
+                {
+                    txtWorkingDays.Focus();
+                }
+                else
+                {
+                    txtTotalDays.Focus();
+                }
+            }
+        }
+
+        private void txtWorkingDays_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (txtWorkingDays.Text.Length > 0)
+                {
+                    txtPresentDays.Focus();
+                }
+                else
+                {
+                    txtWorkingDays.Focus();
+                }
+            }
+        }
+
+        private void txtPresentDays_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                txtAbsentDays.Focus();
+            }
+        }
+
+        private void txtAbsentDays_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtLopDays.Focus();
+            }
+        }
+
+        private void txtLopDays_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSave.Focus();
             }
         }
     }

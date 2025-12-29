@@ -30,8 +30,8 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.txtEmpId = new System.Windows.Forms.TextBox();
-            this.txtEmpName = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtEmpName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -45,7 +45,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtLopDays = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
-            this.dtnUpdate = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
             this.cmbYear = new System.Windows.Forms.ComboBox();
@@ -68,23 +68,24 @@
             this.txtEmpId.Size = new System.Drawing.Size(193, 21);
             this.txtEmpId.TabIndex = 1;
             this.txtEmpId.TextChanged += new System.EventHandler(this.txtEmpId_TextChanged);
+            this.txtEmpId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmpId_KeyDown);
             this.txtEmpId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmpId_KeyPress);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(304, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(77, 12);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Emp Name :";
             // 
             // txtEmpName
             // 
-            this.txtEmpName.AutoSize = true;
-            this.txtEmpName.Location = new System.Drawing.Point(304, 30);
+            this.txtEmpName.Location = new System.Drawing.Point(387, 27);
             this.txtEmpName.Name = "txtEmpName";
-            this.txtEmpName.Size = new System.Drawing.Size(77, 12);
-            this.txtEmpName.TabIndex = 0;
-            this.txtEmpName.Text = "Emp Name :";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(387, 27);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(193, 21);
-            this.textBox2.TabIndex = 1;
+            this.txtEmpName.Size = new System.Drawing.Size(193, 21);
+            this.txtEmpName.TabIndex = 1;
             // 
             // label3
             // 
@@ -119,6 +120,7 @@
             this.txtTotalDays.Name = "txtTotalDays";
             this.txtTotalDays.Size = new System.Drawing.Size(193, 21);
             this.txtTotalDays.TabIndex = 1;
+            this.txtTotalDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTotalDays_KeyDown);
             this.txtTotalDays.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTotalDays_KeyPress);
             // 
             // label6
@@ -136,6 +138,7 @@
             this.txtWorkingDays.Name = "txtWorkingDays";
             this.txtWorkingDays.Size = new System.Drawing.Size(193, 21);
             this.txtWorkingDays.TabIndex = 1;
+            this.txtWorkingDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtWorkingDays_KeyDown);
             this.txtWorkingDays.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtWorkingDays_KeyPress);
             // 
             // label7
@@ -153,6 +156,7 @@
             this.txtPresentDays.Name = "txtPresentDays";
             this.txtPresentDays.Size = new System.Drawing.Size(102, 21);
             this.txtPresentDays.TabIndex = 1;
+            this.txtPresentDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPresentDays_KeyDown);
             this.txtPresentDays.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPresentDays_KeyPress);
             // 
             // label8
@@ -170,6 +174,7 @@
             this.txtAbsentDays.Name = "txtAbsentDays";
             this.txtAbsentDays.Size = new System.Drawing.Size(102, 21);
             this.txtAbsentDays.TabIndex = 1;
+            this.txtAbsentDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAbsentDays_KeyDown);
             this.txtAbsentDays.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAbsentDays_KeyPress);
             // 
             // label9
@@ -187,6 +192,7 @@
             this.txtLopDays.Name = "txtLopDays";
             this.txtLopDays.Size = new System.Drawing.Size(102, 21);
             this.txtLopDays.TabIndex = 1;
+            this.txtLopDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLopDays_KeyDown);
             this.txtLopDays.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLopDays_KeyPress);
             // 
             // btnSave
@@ -198,14 +204,14 @@
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             // 
-            // dtnUpdate
+            // btnUpdate
             // 
-            this.dtnUpdate.Location = new System.Drawing.Point(228, 201);
-            this.dtnUpdate.Name = "dtnUpdate";
-            this.dtnUpdate.Size = new System.Drawing.Size(98, 28);
-            this.dtnUpdate.TabIndex = 2;
-            this.dtnUpdate.Text = "Update";
-            this.dtnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Location = new System.Drawing.Point(228, 201);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(98, 28);
+            this.btnUpdate.TabIndex = 2;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
             // 
             // btnDelete
             // 
@@ -229,19 +235,43 @@
             // 
             this.cmbYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbYear.FormattingEnabled = true;
+            this.cmbYear.Items.AddRange(new object[] {
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025",
+            "2026"});
             this.cmbYear.Location = new System.Drawing.Point(93, 63);
             this.cmbYear.Name = "cmbYear";
             this.cmbYear.Size = new System.Drawing.Size(193, 20);
             this.cmbYear.TabIndex = 3;
+            this.cmbYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbYear_KeyDown);
             // 
             // cmbMonth
             // 
             this.cmbMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMonth.FormattingEnabled = true;
+            this.cmbMonth.Items.AddRange(new object[] {
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"});
             this.cmbMonth.Location = new System.Drawing.Point(387, 63);
             this.cmbMonth.Name = "cmbMonth";
             this.cmbMonth.Size = new System.Drawing.Size(193, 20);
             this.cmbMonth.TabIndex = 3;
+            this.cmbMonth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMonth_KeyDown);
             // 
             // frmEmpAttendance
             // 
@@ -252,10 +282,10 @@
             this.Controls.Add(this.cmbYear);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.dtnUpdate);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtWorkingDays);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtEmpName);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtLopDays);
             this.Controls.Add(this.txtAbsentDays);
@@ -266,7 +296,7 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtEmpName);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtEmpId);
             this.Controls.Add(this.label1);
@@ -282,8 +312,8 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtEmpId;
-        private System.Windows.Forms.Label txtEmpName;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtEmpName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -297,7 +327,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtLopDays;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button dtnUpdate;
+        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.ComboBox cmbYear;
