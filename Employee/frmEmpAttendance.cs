@@ -277,5 +277,29 @@ namespace Payroll.Employee
                 btnSave.Focus();
             }
         }
+
+        Connection con = new Connection();
+        private void cmbMonth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cmbMonth.SelectedIndex != -1)
+            {
+                con.dataGet("Select * From EmpAttendance Where EmpId = '"+txtEmpId.Text+"' and Year = '"+cmbYear.Text+"' and Month = '"+cmbMonth.Text+"'");
+                DataTable dt = new DataTable();
+                con.sda.Fill(dt);
+                if(dt.Rows.Count > 0)
+                {
+                    txtTotalDays.Text = dt.Rows[0]["TotalDays"].ToString();
+                    txtWorkingDays.Text = dt.Rows[0]["WorkingDays"].ToString(); 
+                    txtPresentDays.Text = dt.Rows[0]["PresentDays"].ToString();
+                    txtAbsentDays.Text = dt.Rows[0]["AbsentDays"].ToString();
+                    txtLopDays.Text = dt.Rows[0]["LopDays"].ToString();
+                    btnSave.Enabled = false;
+                    btnUpdate.Enabled = true;
+                    btnDelete.Enabled = true;
+                }
+            }
+        }
+
+
     }
 }
