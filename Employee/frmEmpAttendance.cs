@@ -399,5 +399,16 @@ namespace Payroll.Employee
                 ClearData();
             }
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                con.dataSend("Delete From EmpAttendance Where EmpId ='" + txtEmpId.Text + "' And Year ='" + cmbYear.Text + "' And Month ='" + cmbMonth.Text + "'");
+                MessageBox.Show("Deleted successfully", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearData();
+            }
+        }
     }
 }

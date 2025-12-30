@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connection.cs" />
+    <Compile Include="Employee\frmAttendanceView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Employee\frmAttendanceView.Designer.cs">
+      <DependentUpon>frmAttendanceView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Employee\frmEmpAttendance.cs">
       <SubType>Form</SubType>
     </Compile>
