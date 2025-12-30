@@ -36,6 +36,7 @@
             this.employeeRegisterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.employeeSalaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.employeeAttendanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.attendanceViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,7 +79,8 @@
             this.employeeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.employeeRegisterToolStripMenuItem,
             this.employeeSalaryToolStripMenuItem,
-            this.employeeAttendanceToolStripMenuItem});
+            this.employeeAttendanceToolStripMenuItem,
+            this.attendanceViewToolStripMenuItem});
             this.employeeToolStripMenuItem.Name = "employeeToolStripMenuItem";
             this.employeeToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.employeeToolStripMenuItem.Text = "Employee";
@@ -86,14 +88,14 @@
             // employeeRegisterToolStripMenuItem
             // 
             this.employeeRegisterToolStripMenuItem.Name = "employeeRegisterToolStripMenuItem";
-            this.employeeRegisterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.employeeRegisterToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.employeeRegisterToolStripMenuItem.Text = "Employee Register";
             this.employeeRegisterToolStripMenuItem.Click += new System.EventHandler(this.employeeRegisterToolStripMenuItem_Click);
             // 
             // employeeSalaryToolStripMenuItem
             // 
             this.employeeSalaryToolStripMenuItem.Name = "employeeSalaryToolStripMenuItem";
-            this.employeeSalaryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.employeeSalaryToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.employeeSalaryToolStripMenuItem.Text = "Employee Salary";
             this.employeeSalaryToolStripMenuItem.Click += new System.EventHandler(this.employeeSalaryToolStripMenuItem_Click);
             // 
@@ -103,6 +105,13 @@
             this.employeeAttendanceToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.employeeAttendanceToolStripMenuItem.Text = "Employee Attendance";
             this.employeeAttendanceToolStripMenuItem.Click += new System.EventHandler(this.employeeAttendanceToolStripMenuItem_Click);
+            // 
+            // attendanceViewToolStripMenuItem
+            // 
+            this.attendanceViewToolStripMenuItem.Name = "attendanceViewToolStripMenuItem";
+            this.attendanceViewToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.attendanceViewToolStripMenuItem.Text = "Attendance View";
+            this.attendanceViewToolStripMenuItem.Click += new System.EventHandler(this.attendanceViewToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -135,5 +144,6 @@
         private System.Windows.Forms.ToolStripMenuItem employeeRegisterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem employeeSalaryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem employeeAttendanceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem attendanceViewToolStripMenuItem;
     }
 }

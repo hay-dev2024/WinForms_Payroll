@@ -97,6 +97,9 @@
     <Compile Include="User\frmUserRegister.Designer.cs">
       <DependentUpon>frmUserRegister.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Employee\frmAttendanceView.resx">
+      <DependentUpon>frmAttendanceView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Employee\frmEmpAttendance.resx">
       <DependentUpon>frmEmpAttendance.cs</DependentUpon>
     </EmbeddedResource>

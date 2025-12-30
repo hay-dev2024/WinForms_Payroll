@@ -16,5 +16,10 @@ namespace Payroll.Employee
         {
             InitializeComponent();
         }
+
+        private void cmbSearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

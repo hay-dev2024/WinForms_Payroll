@@ -410,5 +410,13 @@ namespace Payroll.Employee
                 ClearData();
             }
         }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            Employee.frmAttendanceView frm = new Employee.frmAttendanceView();
+            frm.MdiParent = this;
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.Show();
+        }
     }
 }
